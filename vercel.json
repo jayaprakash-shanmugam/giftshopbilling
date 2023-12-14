@@ -1,15 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "templates/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/templates/$1"
-    }
-  ]
+    "builds": [
+        {"src": "app.py",
+         "use": "@vercel/python"}
+    ],
+    "routes": [
+        {"src": "/(.*)",
+         "dest": "app.py"}
+    ]
 }
