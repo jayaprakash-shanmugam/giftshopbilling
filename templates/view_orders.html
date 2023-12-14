@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>View Orders</title>
+</head>
+<body>
+    <div class="container">
+        <h1>View Orders</h1>
+        <form method="post" action="{{ url_for('view_orders') }}">
+            {% for order in orders %}
+            <div class="order-card">
+                <div class="order-info">
+                    <p><strong>Order ID:</strong> {{ order['_id'] }}</p>
+
+                    <label for="customer_name">Customer Name:</label>
+                    <input type="text" name="customer_name" value="{{ order['customer_name'] }}">
+
+                    <label for="customer_contact">Customer Contact:</label>
+                    <input type="text" name="customer_contact" value="{{ order['customer_contact'] }}">
+
+                    <label for="order_date">Order Date:</label>
+                    <input type="text" name="order_date" value="{{ order['order_date'] }}" disabled>
+
+                    <label for="total_price">Total Price:</label>
+                    <input type="text" name="total_price" value="{{ order['total_price'] | round(2) }}" disabled>
+
+                    <label for="payment_method">Payment Method:</label>
+                    <input type="text" name="payment_method" value="{{ order['payment_method'] }}">
+
+                    <label for="transaction_id">Transaction ID:</label>
+                    <input type="text" name="transaction_id" value="{{ order['transaction_id'] }}">
+
+                    <label for="payment_status">Payment Status:</label>
+                    <input type="text" name="payment_status" value="{{ order['payment_status'] }}">
+
+                    <!-- Include input fields for the gifts -->
+                    <p><strong>Gifts:</strong></p>
+                    {% for gift in order['gifts'] %}
+                        <label for="gift_name">Gift Name:</label>
+                        <input type="text" name="gift_name" value="{{ gift['name'] }}" disabled>
+
+                        <label for="gift_price">Gift Price:</label>
+                        <input type="text" name="gift_price" value="{{ gift['price'] | round(2) }}" disabled>
+
+                        <label for="quantity">Quantity:</label>
+                        <input type="text" name="quantity" value="{{ gift['quantity'] }}" disabled>
+
+                        <label for="subtotal">Subtotal:</label>
+                        <input type="text" name="subtotal" value="{{ gift['subtotal'] | round(2) }}" disabled>
+                    {% endfor %}
+
+                    <!-- Include input fields for update/delete -->
+                    <label for="new_payment_status">New Payment Status:</label>
+                    <select name="new_payment_status">
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+
+                    <input type="hidden" name="order_id" value="{{ order['_id'] }}">
+                </div>
+                <div class="order-actions">
+                    <button type="submit" name="update_order" value="{{ order['_id'] }}" class="update-btn">Update Order</button>
+                    <button type="submit" name="delete_order" value="{{ order['_id'] }}" class="delete-btn">Delete Order</button>
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</body>
+</html>

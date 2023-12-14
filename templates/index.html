@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Shop</title>
+</head>
+<body>
+    <h1>Welcome to the Gift Shop</h1>
+    <p>This is the homepage of the Gift Shop. Navigate to the admin dashboard or view orders.</p>
+    <ul>
+        <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+        <li><a href="{{ url_for('view_orders') }}">View Orders</a></li>
+    </ul>
+</body>
+</html>
