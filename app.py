@@ -17,6 +17,7 @@ def index():
 
 @app.route('/create_order', methods=['GET', 'POST'])
 def create_order():
+    print(request.method)
     if request.method == 'POST':
         # Process form data and insert into MongoDB
         customer_name = request.form['customer_name']

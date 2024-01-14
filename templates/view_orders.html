@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>View Orders</h1>
-        <form method="post" action="{{ url_for('view_orders') }}">
+        <form method="post">
             {% for order in orders %}
             <div class="order-card">
                 <div class="order-info">

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Create Order</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <form method="post" class="order-form">
+            <div class="form-group">
+                <label for="customer_name">Customer Name:</label>
+                <input type="text" id="customer_name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer_contact">Customer Phone Number:</label>
+                <input type="text" id="customer_contact" name="customer_contact" required>
+            </div>
+            <div class="form-group">
+                <label for="gift_name">Gift Name:</label>
+                <input type="text" id="gift_name" name="gift_name" required>
+            </div>
+            <div class="form-group">
+                <label for="gift_price">Price:</label>
+                <input type="number" id="gift_price" name="gift_price" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" step="1" required>
+            </div>
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <select id="payment_method" name="payment_method">
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transaction_id">Transaction ID:</label>
+                <input type="text" id="transaction_id" name="transaction_id">
+            </div>
+            <div class="form-group">
+                <label for="payment_status">Payment Status:</label>
+                <input type="radio" id="pending" name="payment_status" value="Pending" checked>
+                <label for="pending">Pending</label>
+                <input type="radio" id="completed" name="payment_status" value="Completed">
+                <label for="completed">Completed</label>
+            </div>
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </form>
+    </div>
+</body>
+</html>
