@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 from pymongo import MongoClient
 import io
+import os
 
 st.set_page_config(
     page_title="Shree Vari Mart",
@@ -11,8 +12,10 @@ st.set_page_config(
 )
 
 # MongoDB connection
+
 def connect_to_mongodb():
-    client = MongoClient("mongodb://localhost:27017/")
+    mongo_host = os.getenv("MONGO_HOST", "localhost")  # Get from environment
+    client = MongoClient(f"mongodb://{mongo_host}:27017/")
     db = client["invoice_db"]
     return db.invoices
 
