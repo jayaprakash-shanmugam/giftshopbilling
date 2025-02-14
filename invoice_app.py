@@ -10,18 +10,11 @@ st.set_page_config(
     layout="wide"
 )
 
+# MongoDB connection
 def connect_to_mongodb():
-    try:
-        mongo_uri = os.getenv('MONGO_URI', 'mongodb://host.docker.internal:27017/')
-        client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
-        # Test the connection
-        client.server_info()
-        db = client["invoice_db"]
-        return db.invoices
-    except Exception as e:
-        st.error(f"Failed to connect to MongoDB: {str(e)}")
-        st.error("Please ensure MongoDB is running and accessible.")
-        return None
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["invoice_db"]
+    return db.invoices
 
 # Initialize MongoDB collection
 collection = connect_to_mongodb()
