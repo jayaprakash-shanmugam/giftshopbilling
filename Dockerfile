@@ -1,16 +1,13 @@
-# Dockerfile
 FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-COPY invoice_app.py .
+COPY . /app
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8501
+ENV PYTHONDONTWRITEBYTECODE 1
 
-# Use host.docker.internal to connect to host machine's MongoDB
-ENV MONGO_URI="mongodb://host.docker.internal:27017/"
+ENV PYTHONUNBUFFERED 1
 
-CMD ["streamlit", "run", "invoice_app.py", "--server.address", "0.0.0.0"]
+CMD ["streamlit", "run", "invoice_app.py", "--server.address", "0.0.0.0", "--server.baseUrlPath", "svm", "--server.enableCORS", "false", "--server.enableXsrfProtection", "false"]
