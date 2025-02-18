@@ -1,19 +1,8 @@
 version: '3.8'
 
 services:
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    restart: always
-    ports:
-      - "27017:27017"
-    networks:
-      - mynetwork
-    volumes:
-      - mongo_data:/data/db
-
   streamlit-app:
-    image: sjayaprakash/shreevari-mart:latest  # Replace with your image name
+    image: sjayaprakash/shreevari-mart:latest 
     container_name: streamlit-app
     restart: always
     depends_on:
@@ -23,10 +12,4 @@ services:
     ports:
       - "8501:8501"
     environment:
-      - MONGO_HOST=mongodb  # Connect to MongoDB inside Docker Network
-
-networks:
-  mynetwork:
-
-volumes:
-  mongo_data:
+      - MONGO_HOST=mongodb  

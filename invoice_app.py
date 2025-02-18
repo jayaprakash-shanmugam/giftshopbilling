@@ -11,6 +11,8 @@ st.set_page_config(
     layout="wide"
 )
 
+st.title(":blue[Shree Vari Mart]")
+
 # MongoDB connection
 
 def connect_to_mongodb():
@@ -190,7 +192,7 @@ def create_invoice():
         col1, col2, col3 = st.columns(3)
         with col1:
             gift_name = st.text_input(
-                f"Gift Name #{i+1}",
+                f"Product {i+1} - Name",
                 value=st.session_state.product_details[i]['gift_name'],
                 key=f"gift_name_{i}"
             )
@@ -198,7 +200,7 @@ def create_invoice():
             
         with col2:
             gift_qty = st.number_input(
-                f"Quantity #{i+1}",
+                f"Product {i+1} - Quantity",
                 min_value=1,
                 value=st.session_state.product_details[i]['gift_quantity'],
                 key=f"gift_qty_{i}"
@@ -207,7 +209,7 @@ def create_invoice():
             
         with col3:
             price = st.number_input(
-                f"Price per unit #{i+1}",
+                f"Product {i+1} - Price",
                 min_value=0.0,
                 value=st.session_state.product_details[i]['price'],
                 step=1.0,
